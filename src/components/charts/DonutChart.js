@@ -1,37 +1,42 @@
 import React from 'react';
-import {View, Dimensions} from 'react-native';
+import {View} from 'react-native';
 import {VictoryPie, VictoryTooltip, VictoryLabel} from 'victory-native';
-var {height, width} = Dimensions.get('window');
+import {screenDimensions} from '../../config/Dimensions';
+var width = screenDimensions.width;
 
 export default class DonutChart extends React.Component {
   constructor(props){
     super(props);
     this.state = {
       data: [
-        { x: 1, y: 100, label: "Stocks" },
-        { x: 2, y: 0, label: "Bonds" },
-        { x: 3, y: 0, label: "Mutual Funds" },
-        { x: 3, y: 0, label: "ETF" },
-        { x: 3, y: 0, label: "Real Estate" },
-        { x: 3, y: 0, label: "Hedge Funds" },
-        { x: 3, y: 0, label: "Private Equity" },
+        { x: 'stocks', y: 100, label: "Stocks" },
+        { x: 'bonds', y: 0, label: "Bonds" },
+        { x: 'mutual', y: 0, label: "Mutual Funds" },
+        { x: 'etf', y: 0, label: "ETF" },
+        { x: 'estate', y: 0, label: "Real Estate" },
+        { x: 'hedge', y: 0, label: "Hedge Funds" },
+        { x: 'equity', y: 0, label: "Private Equity" },
 
-      ]
+      ],
+      newData: []
     }
   }
 
-  componentDidMount(){
+  componentWillMount(){
+    let out = this.state.data;
+    let userFolio = this.props.folio;
+    for(i in out){
+      out[i].y = userFolio[out[i].x]
+    }
     this.setState({
-      data: [
-        { y: 3, label: "Stocks" },
-        { y: 7, label: "Bonds" },
-        { y: 11, label: "Mutual Funds" },
-        { y: 20, label: "ETF" },
-        { y: 15, label: "Real Estate" },
-        { y: 21, label: "Hedge Funds" },
-        { y: 23, label: "Private Equity" },
+      newData: out
+    });
+  }
 
-      ]
+  componentDidMount(){
+    let dataNew = this.state.newData;
+    this.setState({
+      data: dataNew
     })
   }
 
@@ -40,7 +45,7 @@ export default class DonutChart extends React.Component {
     return (
       <VictoryPie
         data={this.state.data}
-        animate={{duration: 2000}}
+        animate={{duration: 5000}}
         colorScale="qualitative"
         labelRadius={75}
         style={{ labels: { fill: "white", fontSize: 10} }}

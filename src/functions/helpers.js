@@ -1,3 +1,5 @@
+import { NavigationActions } from 'react-navigation';
+
 export const calculatePercentages = (folio) => {
   let total = 0;
   let output = {};
@@ -8,4 +10,14 @@ export const calculatePercentages = (folio) => {
     output[i] = folio[i]/total;
   }
   return output;
+}
+
+export const cleanNavigate = (navigation, route) => {
+  const resetAction = NavigationActions.reset({
+    index: 0,
+    actions: [
+      NavigationActions.navigate({ routeName: route }),
+    ],
+  });
+  navigation.dispatch(resetAction);
 }

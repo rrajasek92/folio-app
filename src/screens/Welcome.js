@@ -1,12 +1,10 @@
 import React from 'react';
 import Expo from 'expo';
 import { Text, View } from 'react-native';
-import {Button} from 'react-native-elements';
 
 export default class Welcome extends React.Component {
-
   next = () => {
-    this.props.navigation.navigate('RiskScreen');
+    this.props.navigation.navigate('RiskScreen')
   }
 
   componentDidMount() {

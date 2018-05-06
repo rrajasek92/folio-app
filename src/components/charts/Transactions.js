@@ -14,6 +14,7 @@ export default class Transactions extends React.Component {
   }
 
   componentWillMount(){
+    console.log(this.props.risk_level);
     let ideal = buildIdeal(this.props.risk_level);
     let trans = neededTransactions(ideal, this.props.user_portfolio);
     this.setState({transactions:trans});

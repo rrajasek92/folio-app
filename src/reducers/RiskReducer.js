@@ -1,4 +1,4 @@
-const INITIAL_STATE = false;
+const INITIAL_STATE = {risk_level: false};
 export default (risk = INITIAL_STATE, action) => {
   if(action.type === 'risk_chosen') {
     console.log('RISK REDUCER SUCCESSFUL')
