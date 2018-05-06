@@ -2,8 +2,11 @@ import React from 'react';
 import SwitchSelector from 'react-native-switch-selector';
 import { StyleSheet, Text, View, TouchableOpacity, Dimensions } from 'react-native';
 import {Button} from 'react-native-elements';
+import { connect } from 'react-redux';
+import {saveRisk} from '../../actions'
 var {height, width} = Dimensions.get('window');
 
+@connect(state => ({risk_level: state.risk_level.risk_level, user_portfolio: state.user_portfolio.user_portfolio}, {saveRisk}))
 export default class RiskTolerance extends React.Component {
   constructor(props){
     super(props);
@@ -32,7 +35,9 @@ export default class RiskTolerance extends React.Component {
   }
 
   submit = () => {
-    alert(this.state.riskVal);
+    console.log(this.state.riskVal)
+    this.props.saveRisk(this.state.riskVal);
+    this.props.navigation.navigate('PortfolioIntro');
   }
 
   render() {
@@ -50,13 +55,13 @@ export default class RiskTolerance extends React.Component {
     ];
     return (
       <View style={styles.container}>
-        <Text style={{color:'#29c64d',fontSize:30}}>What is your risk tolerance level?</Text>
+        <Text style={{textAlign: 'center', color:'#29c64d',fontSize:30}}>What is your risk tolerance level?</Text>
         <SwitchSelector
           options={options}
           initial={0}
           fontSize={25}
           borderColor={'white'}
-          hasPadding={true}
+          hasPadding={false}
           onPress={value => {
             this.setState({riskVal: value});
             this.setMessage(value);
@@ -67,7 +72,7 @@ export default class RiskTolerance extends React.Component {
           raised
           large
           title= 'Submit'
-          backgroundColor = '#29c64d'
+          backgroundColor = '#3cad4f'
           onPress = {this.submit}
         />
       </View>
@@ -77,25 +82,12 @@ export default class RiskTolerance extends React.Component {
 
 const styles = StyleSheet.create({
   container: {
-    flex: 5,
+    flex: 1,
     flexDirection: 'column',
     backgroundColor: '#fff',
     alignItems: 'center',
     justifyContent: 'space-evenly',
     padding:15,
     // backgroundColor: '#55b56b'
-  },
-  title: {
-  },
-  picker: {
-    padding:10
-  },
-  submit: {
-    padding: 7,
-    width: width * 0.5,
-    backgroundColor: '#29c64d',
-    alignItems: 'center',
-    justifyContent: 'center',
-    borderRadius: 3
   }
 });

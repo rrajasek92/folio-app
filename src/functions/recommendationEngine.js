@@ -1,4 +1,4 @@
-export const recommend = (val) => {
+export const buildIdeal = (val) => {
   let data = {}
   switch(val){
     case 1:
@@ -37,10 +37,14 @@ export const recommend = (val) => {
   return data;
 }
 
-export const transaction = (risk, folio) =>{
-  let trans = {};
+export const neededTransactions = (risk, folio) => {
+  let trans = [];
   for(key in folio){
-    trans[key] = risk[key] - folio[key]
+    let obj = {}
+    obj['type'] = key
+    obj['value'] = risk[key] - folio[key]
+    console.log(obj)
+    trans.push(obj);
   }
   return trans;
 }

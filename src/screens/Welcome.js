@@ -5,8 +5,8 @@ import {Button} from 'react-native-elements';
 
 export default class Welcome extends React.Component {
 
-  next = async () => {
-    this.props.navigation.navigate('IntroScreen');
+  next = () => {
+    this.props.navigation.navigate('RiskScreen');
   }
 
   componentDidMount() {

@@ -2,9 +2,16 @@
   "main": "node_modules/expo/AppEntry.js",
   "private": true,
   "dependencies": {
+    "art": "^0.10.2",
+    "d3": "^5.1.0",
+    "d3-array": "^1.2.1",
+    "d3-scale": "^2.0.0",
+    "d3-shape": "^1.2.0",
     "expo": "^27.0.1",
     "react": "16.3.1",
+    "react-dom": "^16.3.2",
     "react-native": "https://github.com/expo/react-native/archive/sdk-27.0.0.tar.gz",
+    "react-native-charts-wrapper": "^0.4.3",
     "react-native-elements": "^0.19.1",
     "react-native-multiple-choice": "0.0.8",
     "react-native-pie-chart": "^1.0.13",
@@ -14,7 +21,8 @@
     "react-navigation": "^2.0.0-rc.9",
     "react-redux": "^5.0.7",
     "redux": "^4.0.0",
-    "redux-thunk": "^2.2.0"
+    "redux-thunk": "^2.2.0",
+    "victory-native": "^0.17.4"
   },
   "name": "Folio",
   "version": "0.0.0",

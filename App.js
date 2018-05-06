@@ -1,8 +1,10 @@
 import React from 'react';
+import {StatusBar, View} from 'react-native';
 import Expo from 'expo';
 import {Provider} from 'react-redux';
 import configureStore from './src/config/configureStore.js';
 import {RootStack} from './src/screens/ScreenStacks/RootStack.js';
+import DonutChart from './src/components/charts/DonutChart';
 const store = configureStore();
 
 export default class App extends React.Component {
@@ -10,13 +12,14 @@ export default class App extends React.Component {
     super();
   }
 
-  componentWillMount(){
+  componentDidMount(){
+    StatusBar.setHidden(true);
   }
 
   render() {
     return (
       <Provider store = {store}>
-        <RootStack />
+          <RootStack />
       </Provider>
     );
   }
