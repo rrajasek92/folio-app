@@ -4,10 +4,10 @@ export const calculatePercentages = (folio) => {
   let total = 0;
   let output = {};
   for(i in folio){
-    total += folio[i];
+    total += parseInt(folio[i]);
   }
   for(i in folio){
-    output[i] = folio[i]/total;
+    output[i] = Math.round((folio[i]/total) * 100);
   }
   return output;
 }

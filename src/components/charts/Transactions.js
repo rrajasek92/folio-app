@@ -14,9 +14,9 @@ export default class Transactions extends React.Component {
   }
 
   componentWillMount(){
-    console.log(this.props.risk_level);
     let ideal = buildIdeal(this.props.risk_level);
-    let trans = neededTransactions(ideal, this.props.user_portfolio);
+    let trans = neededTransactions(ideal, this.props.folio);
+    console.log(trans);
     this.setState({transactions:trans});
   }
 
@@ -26,15 +26,14 @@ export default class Transactions extends React.Component {
   _renderItem = ({item}) => {
     return (
       <TransactionCard
-        type={this.item.type}
-        transaction={this.item.transaction}
+        type={item.key}
+        transPct={item.value}
+        folioPct={this.props.folio[item.key]}
       />
     )
   }
 
   render() {
-    console.log("TRANSACTIONS");
-    console.log(this.state.transactions);
     return (
       <FlatList
         data={this.state.transactions}

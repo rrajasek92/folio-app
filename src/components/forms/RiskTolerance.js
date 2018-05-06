@@ -6,7 +6,7 @@ import { connect } from 'react-redux';
 import {saveRisk} from '../../actions'
 import {cleanNavigate} from '../../functions/helpers';
 
-@connect(state => ({risk_level: state.risk_level.risk_level, user_portfolio: state.user_portfolio.user_portfolio}, {saveRisk}))
+@connect(state => ({saveRisk}))
 export default class RiskTolerance extends React.Component {
   constructor(props){
     super(props);
@@ -35,7 +35,7 @@ export default class RiskTolerance extends React.Component {
   }
 
   submit = () => {
-    this.props.saveRisk(this.state.riskVal);
+    this.props.dispatch(this.props.saveRisk(this.state.riskVal));
     this.props.navigation.navigate('PortfolioIntro');
   }
 
@@ -46,7 +46,7 @@ export default class RiskTolerance extends React.Component {
         <SwitchSelector
           options={options}
           initial={0}
-          fontSize={25}
+          fontSize={23}
           borderColor={'white'}
           hasPadding={false}
           onPress={value => {
@@ -54,7 +54,7 @@ export default class RiskTolerance extends React.Component {
             this.setMessage(value);
           }}
         />
-        <Text style={{color:'#29c64d',fontSize:24}}>{this.state.risk}</Text>
+        <Text style={{color:'#29c64d',fontSize:17}}>{this.state.risk}</Text>
         <Button
           raised
           large
@@ -68,16 +68,16 @@ export default class RiskTolerance extends React.Component {
 }
 
 const options = [
-{ label: '1', activeColor: '#287a3b', value: '1' },
-{ label: '2', activeColor: '#29873f', value: '2' },
-{ label: '3', activeColor: '#2b9644', value: '3' },
-{ label: '4', activeColor: '#2bad49', value: '4' },
-{ label: '5', activeColor: '#29b549', value: '5' },
-{ label: '6', activeColor: '#29c64d', value: '6' },
-{ label: '7', activeColor: '#23d14b', value: '7' },
-{ label: '8', activeColor: '#15db43', value: '8' },
-{ label: '9', activeColor: '#0fe040', value: '9' },
-{ label: '10', activeColor: '#00f93a', value: '10' },
+{ label: '1', activeColor: '#287a3b', value: 1 },
+{ label: '2', activeColor: '#29873f', value: 2 },
+{ label: '3', activeColor: '#2b9644', value: 3 },
+{ label: '4', activeColor: '#2bad49', value: 4 },
+{ label: '5', activeColor: '#29b549', value: 5 },
+{ label: '6', activeColor: '#29c64d', value: 6 },
+{ label: '7', activeColor: '#23d14b', value: 7 },
+{ label: '8', activeColor: '#15db43', value: 8 },
+{ label: '9', activeColor: '#0fe040', value: 9 },
+{ label: '10', activeColor: '#00f93a', value: 10 },
 ];
 
 const styles = StyleSheet.create({

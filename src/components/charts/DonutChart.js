@@ -2,8 +2,11 @@ import React from 'react';
 import {View} from 'react-native';
 import {VictoryPie, VictoryTooltip, VictoryLabel} from 'victory-native';
 import {screenDimensions} from '../../config/Dimensions';
+import {buildIdeal} from '../../functions/recommendationEngine';
+import { connect } from 'react-redux';
 var width = screenDimensions.width;
 
+@connect(state =>({risk_level: state.risk_level.risk_level}))
 export default class DonutChart extends React.Component {
   constructor(props){
     super(props);
@@ -24,13 +27,15 @@ export default class DonutChart extends React.Component {
 
   componentWillMount(){
     let out = this.state.data;
-    let userFolio = this.props.folio;
+    let userFolio = buildIdeal(this.props.risk_level)
     for(i in out){
       out[i].y = userFolio[out[i].x]
     }
     this.setState({
       newData: out
     });
+
+
   }
 
   componentDidMount(){

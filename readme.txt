@@ -68,7 +68,7 @@ that I left out considering my goal for time.
    this wasn't something I considered for an app with this scope at first, but
    thinking about it, this would definitely help provide a more tactile and
    interactive user experience
-  -Platform Optimized components: 
+  -Platform Optimized components:
 
 All of these planned features would utilize redux heavily.
 
@@ -103,3 +103,13 @@ library rather than from the 'react-native' node package as in Native.
 In regards to Foundation:
 I was unfortunately not able to find a 1:1 equivalent for Foundation that is usable
 in Native, and had to settle for a similar alternative in React Native Elements
+
+Final Thoughts:
+Overall the project took about 15 hours in total, 5 more hours than the projected
+time frame. Most of my time was split between fine tuning UX to make it look as
+professional as possible and a certain bug that I encountered when implementing redux.
+Sizing in particular was difficult to balance, especially in regards to iOS. The
+redux bug I encountered was a simple one, but took quite a long time to figure out.
+As I haven't worked with React Native extensively in many months, and due to the
+fact that this is a constantly changing/updating framework it took a little while
+to catch back up to speed as far as small changes in the usage of the framework.

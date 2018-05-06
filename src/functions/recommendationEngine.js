@@ -41,7 +41,7 @@ export const neededTransactions = (risk, folio) => {
   let trans = [];
   for(key in folio){
     let obj = {}
-    obj['type'] = key
+    obj['key'] = key
     obj['value'] = risk[key] - folio[key]
     console.log(obj)
     trans.push(obj);
