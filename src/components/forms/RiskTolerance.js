@@ -1,10 +1,9 @@
 import React from 'react';
 import SwitchSelector from 'react-native-switch-selector';
-import { StyleSheet, Text, View, TouchableOpacity } from 'react-native';
+import { StyleSheet, Text, View } from 'react-native';
 import {Button} from 'react-native-elements';
 import { connect } from 'react-redux';
-import {saveRisk} from '../../actions'
-import {cleanNavigate} from '../../functions/helpers';
+import {saveRisk} from '../../actions';
 
 @connect(state => ({saveRisk}))
 export default class RiskTolerance extends React.Component {
@@ -87,7 +86,6 @@ const styles = StyleSheet.create({
     backgroundColor: '#fff',
     alignItems: 'center',
     justifyContent: 'space-evenly',
-    padding:15,
-    // backgroundColor: '#55b56b'
+    padding:15
   }
 });

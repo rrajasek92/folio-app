@@ -4,7 +4,6 @@ import { StyleSheet, Text, View, ScrollView, TouchableOpacity} from 'react-nativ
 import DonutChart from '../components/charts/DonutChart';
 import {Button} from 'react-native-elements';
 import Transactions from '../components/charts/Transactions'
-const sampleData = {stocks: 3, bonds: 7, mutual: 11, etf: 15, estate: 20, hedge: 21, equity: 23}
 
 export default class Dashboard extends React.Component {
 

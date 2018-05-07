@@ -56,25 +56,7 @@ export default class DonutChart extends React.Component {
         style={{ labels: { fill: "white", fontSize: 10} }}
         innerRadius={40}
         width={width*2}
-        // labelComponent={<CustomLabel />}
       />
     );
-  }
-}
-
-export class CustomLabel extends React.Component {
-  static defaultEvents = VictoryTooltip.defaultEvents
-
-  render() {
-    const { datum, text, y, style } = this.props
-    return (
-        <VictoryTooltip
-          {...this.props}
-          text={`${text}\n${datum.y}%`}
-          orientation="top"
-          pointerLength={5}
-          height={40}
-        />
-    )
   }
 }

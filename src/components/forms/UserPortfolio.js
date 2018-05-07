@@ -1,6 +1,5 @@
 import React from 'react';
-import Expo from 'expo';
-import { StyleSheet, Text, View, FlatList } from 'react-native';
+import { StyleSheet, View, FlatList } from 'react-native';
 import { FormLabel, FormInput } from 'react-native-elements'
 import {Button} from 'react-native-elements';
 import {calculatePercentages} from '../../functions/helpers';
@@ -76,32 +75,11 @@ export default class UserPortfolio extends React.Component {
 
     );
   }
-  // render() {
-  //   return (
-  //     <View style={styles.container}>
-  //       <FormLabel>Stocks</FormLabel>
-  //       <FormInput onChangeText={(text) => this.handleInput('stocks',text)}/>
-  //       <FormLabel>Bonds</FormLabel>
-  //       <FormInput onChangeText={(text) => this.handleInput('bonds',text)}/>
-  //       <FormLabel>Mutual Funds</FormLabel>
-  //       <FormInput onChangeText={(text) => this.handleInput('mutual',text)}/>
-  //       <FormLabel>ETF</FormLabel>
-  //       <FormInput onChangeText={(text) => this.handleInput('etf',text)}/>
-  //       <FormLabel>Real Estate</FormLabel>
-  //       <FormInput onChangeText={(text) => this.handleInput('estate',text)}/>
-  //       <FormLabel>Hedge Funds</FormLabel>
-  //       <FormInput onChangeText={(text) => this.handleInput('hedge',text)}/>
-  //       <FormLabel>Private Equity</FormLabel>
-  //       <FormInput onChangeText={(text) => this.handleInput('equity',text)}/>
-  //     </View>
-  //   );
-  // }
 }
 
 const styles = StyleSheet.create({
   container: {
     flex: 5,
-    // alignSelf: 'center',
     flexDirection: 'column',
     backgroundColor: '#fff',
     alignItems: 'center',

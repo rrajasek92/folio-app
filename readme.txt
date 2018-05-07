@@ -1,8 +1,8 @@
 --------Folio App----------
 
 Installation:
-This app was built and deployed using Expo. In order to access on iOS you must
-download "Expo Client" on the app store. After that, open a browser and search
+This app was built and deployed using Expo. In order to access it on iOS you must
+download "Expo Client" in the app store. After that, open a browser and search
 the following url:
 
 https://expo.io/--/to-exp/https%3A%2F%2Fexp.host%2F%40rrajasek92%2FFolio
@@ -38,7 +38,7 @@ screen, as I felt that the form looked cleaner on its own. Styling difficulties
 aside, in hindsight it may have been better to add the question to the form page
 in order to avoid confusion. I used a third party component for the form entry
 as well, as there were subtle ux qualities to it that made the app feel more
-professional.
+professional. The input is type-proofed, so only numbers may be provided.
 
 After that we have the Dashboard which uses the user information to generate
 a donut chart for their ideal financial portfolio, and a transaction chart for
@@ -51,7 +51,7 @@ trying to meet my time goal. Another goal for this pie chart was to be able to
 click the donut hole of the chart and have a popup that would allow you to change
 your ideal profile.
 I would also have liked to display a more robust transaction table with the user
-being able to click on each investment type and change their current porfolio,
+being able to click on each investment type and change their current portfolio,
 but again time did not permit.
 When thinking about "production ready," there were several additional features
 that I left out considering my goal for time.
@@ -68,7 +68,10 @@ that I left out considering my goal for time.
    this wasn't something I considered for an app with this scope at first, but
    thinking about it, this would definitely help provide a more tactile and
    interactive user experience
-  -Platform Optimized components:
+  -Platform Optimized components: Certain things looked better in iOS, others in
+   Android. There is functionality within React Native to identify which platform
+   is being used so this shouldn't be too difficult, but in the interest of time
+   I avoided this for now.
 
 All of these planned features would utilize redux heavily.
 
@@ -76,8 +79,8 @@ All of these planned features would utilize redux heavily.
 Code Breakdown:
 My overall approach was to of course make the project as modular and clean as
 possible. I utilized redux to store both user inputs (risk tolerance level and
-current portfolio). My backend recommendation engine used this user data to create
-a standard data distribution for their ideal model and subtracted the calculated
+current portfolio). My backend recommendation engine in /src/functions/recommendationEngine.js
+used this user data to create a standard data distribution for their ideal model and subtracted the calculated
 percentages of their current portfolio to create a suggested transaction model.
 These can be found in /src/functions as both part of the recommendation engine and
 as helper functions.
@@ -85,7 +88,8 @@ I used react-navigation as my router, with configuration in the /src/navigation/
 directory. App.js (the root component) renders a RootStack component, which is a
 StackNavigator component (from react-navigation) that utilizes my router configuration.
 Pages are stored as "screens" in the /src/screens directory and follow a linear
-path of Welcome => Enter Risk => Enter Portfolio => Display Dashboard.
+path of Welcome => Enter Risk => Enter Portfolio => Display Dashboard. From the Dashboard
+"Start Over" can be selected to start the flow again.
 "this.props.navigation" is passed as props to children components within each
 screen so that they themselves can control the route changes. I additionally created
 a "clean navigator" in my helper functions to prevent android users from using the
@@ -98,7 +102,8 @@ uses html tags to build out component, while Native uses pre-built JSX component
 One way I thought of making the code more translatable was to build out fundamental
 React Native JSX tags such as View and Text using divs, etc. so that if a React dev
 wanted to reuse Native code, they could simply import such components from a custom
-library rather than from the 'react-native' node package as in Native.
+library rather than from the 'react-native' node package as in Native. These can be
+found in /src/components/react-native-components
 
 In regards to Foundation:
 I was unfortunately not able to find a 1:1 equivalent for Foundation that is usable
@@ -106,7 +111,8 @@ in Native, and had to settle for a similar alternative in React Native Elements
 
 Final Thoughts:
 Overall the project took about 15 hours in total, 5 more hours than the projected
-time frame. Most of my time was split between fine tuning UX to make it look as
+time frame. A good part of my time was spent planning and finding/testing third party components
+that actually worked. The rest of my time was split between fine tuning UX to make it look as
 professional as possible and a certain bug that I encountered when implementing redux.
 Sizing in particular was difficult to balance, especially in regards to iOS. The
 redux bug I encountered was a simple one, but took quite a long time to figure out.
