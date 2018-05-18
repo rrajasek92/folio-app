@@ -15,8 +15,7 @@ export default class Transactions extends React.Component {
 
   componentWillMount(){
     let ideal = buildIdeal(this.props.risk_level);
-    let trans = neededTransactions(ideal, this.props.folio);
-    console.log(trans);
+    let trans = neededTransactions(ideal, this.props.user_portfolio);
     this.setState({transactions:trans});
   }
 
@@ -28,7 +27,7 @@ export default class Transactions extends React.Component {
       <TransactionCard
         type={item.key}
         transPct={item.value}
-        folioPct={this.props.folio[item.key]}
+        folioPct={this.props.user_portfolio[item.key]}
       />
     )
   }

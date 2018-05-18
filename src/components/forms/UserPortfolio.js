@@ -41,9 +41,9 @@ export default class UserPortfolio extends React.Component {
     }
     console.log(this.state.folio);
     let user_folio = calculatePercentages(this.state.folio);
-    // this.props.dispatch(this.props.savePortfolio(user_folio));
+    this.props.dispatch(this.props.savePortfolio(user_folio));
     console.log(user_folio);
-    this.props.navigation.navigate('Dashboard', {folio: user_folio});
+    this.props.navigation.navigate('Dashboard');
   }
 
   _renderItem = (item) => {

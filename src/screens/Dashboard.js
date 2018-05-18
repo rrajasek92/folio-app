@@ -19,7 +19,7 @@ export default class Dashboard extends React.Component {
           <DonutChart />
         </View>
         <Text style={{textAlign:'center', color:'grey',fontSize:21, paddingBottom: 15}}>How to Match Your Ideal Portfolio</Text>
-        <Transactions folio={this.props.navigation.state.params.folio}/>
+        <Transactions />
         <TouchableOpacity activeOpacity={0.7} style={styles.startOver} onPress = {this.startOver}>
           <Text style={{color: 'white'}}>Start Over</Text>
         </TouchableOpacity>

@@ -1,4 +1,4 @@
-const INITIAL_STATE = false;
+const INITIAL_STATE = {};
 export default (portfolio = INITIAL_STATE, action) => {
   if(action.type === 'portfolio_submitted') {
     console.log('FOLIO REDUCER SUCCESSFUL');
