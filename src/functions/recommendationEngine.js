@@ -2,40 +2,41 @@ export const buildIdeal = (val) => {
   let data = {}
   switch(val){
     case 1:
-      data = {stocks: 3, bonds: 7, mutual: 11, etf: 15, estate: 20, hedge: 21, equity: 23}
+      data = {stocks: 10, bonds: 20, mutual: 15, etf: 25, estate: 30}
       break;
     case 2:
-      data = {stocks: 3, bonds: 7, mutual: 11, etf: 20, estate: 15, hedge: 21, equity: 23}
+      data = {stocks: 15, bonds: 15, mutual: 20, etf: 25, estate: 25}
       break;
     case 3:
-      data = {stocks: 3, bonds: 7, mutual: 11, etf: 21, estate: 20, hedge: 15, equity: 23}
+      data = {stocks: 15, bonds: 15, mutual: 25, etf: 25, estate: 20}
       break;
     case 4:
-      data = {stocks: 3, bonds: 7, mutual: 11, etf: 21, estate: 23, hedge: 15, equity: 20}
+      data = {stocks: 15, bonds: 20, mutual: 25, etf: 20, estate: 20}
       break;
     case 5:
-      data = {stocks: 7, bonds: 3, mutual: 15, etf: 23, estate: 21, hedge: 11, equity: 20}
+      data = {stocks: 20, bonds: 20, mutual: 20, etf: 20, estate: 20}
       break;
     case 6:
-      data = {stocks: 7, bonds: 11, mutual: 21, etf: 23, estate: 20, hedge: 3, equity: 15}
+      data = {stocks: 25, bonds: 25, mutual: 20, etf: 15, estate: 15}
       break;
     case 7:
-      data = {stocks: 7, bonds: 15, mutual: 23, etf: 21, estate: 11, hedge: 3, equity: 20}
+      data = {stocks: 30, bonds: 25, mutual: 15, etf: 15, estate: 15}
       break;
     case 8:
-      data = {stocks: 11, bonds: 15, mutual: 21, etf: 23, estate: 20, hedge: 3, equity: 7}
+      data = {stocks: 30, bonds: 30, mutual: 15, etf: 10, estate: 15}
       break;
     case 9:
-      data = {stocks: 15, bonds: 23, mutual: 21, etf: 20, estate: 11, hedge: 3, equity: 7}
+      data = {stocks: 35, bonds: 30, mutual: 15, etf: 5, estate: 15}
       break;
     case 10:
-      data = {stocks: 23, bonds: 20, mutual: 21, etf: 15, estate: 11, hedge: 7, equity: 3}
+      data = {stocks: 40, bonds: 30, mutual: 10, etf: 5, estate: 15}
       break;
     default:
       data = "error"
   }
   return data;
 }
+
 
 export const neededTransactions = (risk, folio) => {
   let trans = [];
@@ -47,4 +48,26 @@ export const neededTransactions = (risk, folio) => {
     trans.push(obj);
   }
   return trans;
+}
+
+export const minimumTrans = (ideal,input,total) => {
+  let index=['stocks','bonds','mutual', 'etf', 'estate']
+  let folio=input;
+  let actions=[]
+  for(let i=0; i<ideal.length-1; i++){
+    let delta=ideal[i]-folio[i];
+    for(let j=i+1;j<ideal.length;j++){
+      let item={}
+      if(delta<=folio[j]){
+        item['to']=index[i];
+        item['from']=index[j];
+        item['amount']=Math.round((delta/100)*total);
+        actions.push(item);
+        folio[i]+=delta;
+        folio[j]-=delta;
+        break;
+      }
+    }
+  }
+  return actions;
 }

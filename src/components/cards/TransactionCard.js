@@ -6,16 +6,19 @@ export default class TransactionCard extends React.Component {
     super(props);
     this.state = {
       fontColor:'black',
-      type: ''
+      to: '',
+      from:''
     }
   }
 
   componentWillMount() {
-    let color = this.getColor(this.props.transPct);
-    let tranType = this.typeSwitch(this.props.type);
+    let color = this.getColor(this.props.amount);
+    let to_switch = this.typeSwitch(this.props.to);
+    let from_switch = this.typeSwitch(this.props.from);
     this.setState({
       fontColor:color,
-      type: tranType
+      to: to_switch,
+      from: from_switch
     });
   }
 
@@ -42,12 +45,6 @@ export default class TransactionCard extends React.Component {
       case 'estate':
         type = 'Real Estate'
         break;
-      case 'hedge':
-        type = 'Hedge Funds'
-        break;
-      case 'equity':
-        type = 'Private Equity'
-        break;
       default:
         break;
     }
@@ -57,8 +54,9 @@ export default class TransactionCard extends React.Component {
   render() {
     return (
       <TouchableOpacity activeOpacity = {0.7} style={styles.container}>
-        <Text style={{fontSize:10}}>Your {this.state.type}: {this.props.folioPct}%</Text>
-        <Text style={{color: this.state.fontColor, fontSize:10}}>{this.props.transPct}% change needed</Text>
+        <Text style={{fontSize:15}}>{this.state.from}    -> </Text>
+        <Text style={{color: this.state.fontColor, fontSize:20}}>${this.props.amount}</Text>
+        <Text style={{fontSize:15}}> ->    {this.state.to}</Text>
       </TouchableOpacity>
     );
   }

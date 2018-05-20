@@ -6,7 +6,7 @@ import {buildIdeal} from '../../functions/recommendationEngine';
 import { connect } from 'react-redux';
 var width = screenDimensions.width;
 
-@connect(state =>({risk_level: state.risk_level.risk_level}))
+@connect(state =>({ideal_folio: state.ideal_portfolio.ideal_portfolio}))
 export default class DonutChart extends React.Component {
   constructor(props){
     super(props);
@@ -16,9 +16,7 @@ export default class DonutChart extends React.Component {
         { x: 'bonds', y: 0, label: "Bonds" },
         { x: 'mutual', y: 0, label: "Mutual Funds" },
         { x: 'etf', y: 0, label: "ETF" },
-        { x: 'estate', y: 0, label: "Real Estate" },
-        { x: 'hedge', y: 0, label: "Hedge Funds" },
-        { x: 'equity', y: 0, label: "Private Equity" },
+        { x: 'estate', y: 0, label: "Real Estate" }
 
       ],
       newData: []
@@ -27,7 +25,7 @@ export default class DonutChart extends React.Component {
 
   componentWillMount(){
     let out = this.state.data;
-    let userFolio = buildIdeal(this.props.risk_level)
+    let userFolio = this.props.ideal_folio;
     for(i in out){
       out[i].y = userFolio[out[i].x]
     }
@@ -43,6 +41,10 @@ export default class DonutChart extends React.Component {
     this.setState({
       data: dataNew
     })
+  }
+
+  componentDidUpdate(){
+
   }
 
   render() {

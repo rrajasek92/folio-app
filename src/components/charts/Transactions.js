@@ -1,10 +1,11 @@
 import React from 'react';
 import {FlatList} from 'react-native';
 import { connect } from 'react-redux';
-import {buildIdeal, neededTransactions} from '../../functions/recommendationEngine';
+import {buildIdeal, minimumTrans} from '../../functions/recommendationEngine';
+import {folioArray, total, calculatePercentages} from '../../functions/helpers';
 import TransactionCard from '../cards/TransactionCard';
 
-@connect(state => ({risk_level: state.risk_level.risk_level, user_portfolio: state.user_portfolio.user_portfolio}))
+@connect(state => ({ideal_folio: state.ideal_portfolio.ideal_portfolio, user_portfolio: state.user_portfolio.user_portfolio}))
 export default class Transactions extends React.Component {
   constructor(props){
     super(props);
@@ -14,20 +15,24 @@ export default class Transactions extends React.Component {
   }
 
   componentWillMount(){
-    let ideal = buildIdeal(this.props.risk_level);
-    let trans = neededTransactions(ideal, this.props.user_portfolio);
+    let idealArr = folioArray(this.props.ideal_folio);
+    let percentages = calculatePercentages(this.props.user_portfolio);
+    console.log('Percentages:');
+    console.log(percentages);
+    let userArr = folioArray(percentages);
+    let totalInv = total(this.props.user_portfolio);
+    console.log(totalInv);
+    let trans = minimumTrans(idealArr, userArr, totalInv);
+    console.log(trans);
     this.setState({transactions:trans});
-  }
-
-  componentDidMount(){
   }
 
   _renderItem = ({item}) => {
     return (
       <TransactionCard
-        type={item.key}
-        transPct={item.value}
-        folioPct={this.props.user_portfolio[item.key]}
+        to={item.to}
+        from={item.from}
+        amount={item.amount}
       />
     )
   }

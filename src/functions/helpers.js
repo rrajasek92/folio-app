@@ -12,6 +12,24 @@ export const calculatePercentages = (folio) => {
   return output;
 }
 
+
+export const folioArray = (obj) => {
+  let output = [];
+  for(i in obj){
+    output.push(obj[i]);
+  }
+  return output;
+}
+
+export const total = (folio) => {
+  let total = 0;
+  for(i in folio){
+    let val = parseInt(folio[i]);
+    total+=val;
+  }
+  return total;
+}
+
 export const cleanNavigate = (navigation, route) => {
   const resetAction = NavigationActions.reset({
     index: 0,

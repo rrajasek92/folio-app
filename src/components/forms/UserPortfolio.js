@@ -11,15 +11,13 @@ export default class UserPortfolio extends React.Component {
   constructor(props){
     super(props);
     this.state = {
-      folio: {bonds:'', equity:'', estate:'', etf:'', hedge:'', mutual:'', stocks:''},
+      folio: {stocks: '', bonds: '', mutual: '', etf: '', estate: ''},
       investments: [
         {type:'Stocks', key:'stocks'},
         {type:'Bonds', key:'bonds'},
         {type:'Mutual Funds', key:'mutual'},
         {type:'ETF', key:'etf'},
-        {type:'Real Estate', key:'estate'},
-        {type:'Hedge Funds', key:'hedge'},
-        {type:'Private Equity', key:'equity'}
+        {type:'Real Estate', key:'estate'}
       ],
     };
   }
@@ -39,10 +37,7 @@ export default class UserPortfolio extends React.Component {
         return;
       }
     }
-    console.log(this.state.folio);
-    let user_folio = calculatePercentages(this.state.folio);
-    this.props.dispatch(this.props.savePortfolio(user_folio));
-    console.log(user_folio);
+    this.props.dispatch(this.props.savePortfolio(this.state.folio));
     this.props.navigation.navigate('Dashboard');
   }
 
