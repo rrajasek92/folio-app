@@ -6,7 +6,7 @@ import {buildIdeal} from '../../functions/recommendationEngine';
 import { connect } from 'react-redux';
 var width = screenDimensions.width;
 
-@connect(state =>({ideal_folio: state.ideal_portfolio.ideal_portfolio}))
+@connect(state =>({donut_data: state.donut_reducer.donut_data}))
 export default class DonutChart extends React.Component {
   constructor(props){
     super(props);
@@ -24,23 +24,9 @@ export default class DonutChart extends React.Component {
   }
 
   componentWillMount(){
-    let out = this.state.data;
-    let userFolio = this.props.ideal_folio;
-    for(i in out){
-      out[i].y = userFolio[out[i].x]
-    }
-    this.setState({
-      newData: out
-    });
-
-
   }
 
   componentDidMount(){
-    let dataNew = this.state.newData;
-    this.setState({
-      data: dataNew
-    })
   }
 
   componentDidUpdate(){
@@ -51,8 +37,8 @@ export default class DonutChart extends React.Component {
 
     return (
       <VictoryPie
-        data={this.state.data}
-        animate={{duration: 5000}}
+        data={this.props.donut_data}
+        animate={{duration: 1000}}
         colorScale="qualitative"
         labelRadius={75}
         style={{ labels: { fill: "white", fontSize: 10} }}

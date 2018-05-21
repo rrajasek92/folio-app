@@ -30,6 +30,24 @@ export const total = (folio) => {
   return total;
 }
 
+export const insertionSort = (items, index) => {
+  for (var i = 0; i < items.length; i++) {
+    let value = items[i]
+    let value2 = index[i]
+    for (var j = i - 1; j > -1 && items[j] > value; j--) {
+      items[j + 1] = items[j]
+      index[j + 1] = index[j]
+    }
+    items[j + 1] = value
+    index[j + 1] = value2
+  }
+
+  output = {};
+  output['a']=items;
+  output['b']=index;
+  return output;
+}
+
 export const cleanNavigate = (navigation, route) => {
   const resetAction = NavigationActions.reset({
     index: 0,

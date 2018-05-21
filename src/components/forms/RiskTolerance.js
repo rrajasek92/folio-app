@@ -1,5 +1,7 @@
 import React from 'react';
 import SwitchSelector from 'react-native-switch-selector';
+import Picker from 'react-native-wheel-picker';
+import DonutChart from '../charts/DonutChart'
 import { StyleSheet, Text, View } from 'react-native';
 import {Button} from 'react-native-elements';
 import { connect } from 'react-redux';
@@ -13,6 +15,9 @@ export default class RiskTolerance extends React.Component {
       risk: 'I want minimum volatility',
       riskVal: 1
     };
+  }
+  componentWillMount(){
+    this.props.dispatch(this.props.saveRisk(1));
   }
 
   setMessage = (value) => {
@@ -48,16 +53,13 @@ export default class RiskTolerance extends React.Component {
           fontSize={23}
           borderColor={'white'}
           hasPadding={false}
-          onPress={value => {
-            this.setState({riskVal: value});
-            this.setMessage(value);
-          }}
+          onPress={value => {this.props.dispatch(this.props.saveRisk(value))}}
         />
-        <Text style={{color:'#29c64d',fontSize:17}}>{this.state.risk}</Text>
+        <DonutChart />
         <Button
           raised
           large
-          title= 'Submit'
+          title= 'Next'
           backgroundColor = '#3cad4f'
           onPress = {this.submit}
         />

@@ -1,5 +1,5 @@
 import React from 'react';
-import { StyleSheet, View, FlatList } from 'react-native';
+import { StyleSheet, View, FlatList, Text } from 'react-native';
 import { FormLabel, FormInput } from 'react-native-elements'
 import {Button} from 'react-native-elements';
 import {calculatePercentages} from '../../functions/helpers';
@@ -29,6 +29,7 @@ export default class UserPortfolio extends React.Component {
   }
 
   submit = () => {
+    console.log(this.state.folio)
     let check = this.state.folio;
     for(i in check){
       let int = parseInt(check[i])||'null'
@@ -53,7 +54,10 @@ export default class UserPortfolio extends React.Component {
   render() {
     return (
       <View style={styles.container}>
-        <View style={{flex:1}}>
+        <View style={{padding: 10}}>
+          <Text style={{textAlign: 'center', color:'#29c64d',fontSize:30}}>Your Portfolio</Text>
+        </View>
+        <View style={{flex:1, padding: 15}}>
           <FlatList
             data={this.state.investments}
             renderItem={({item}) => this._renderItem(item)}
@@ -78,7 +82,7 @@ const styles = StyleSheet.create({
     flexDirection: 'column',
     backgroundColor: '#fff',
     alignItems: 'center',
-    justifyContent: 'center',
+    justifyContent: 'space-evenly',
     padding: 15
   }
 });

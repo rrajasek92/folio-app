@@ -1,3 +1,5 @@
+import {insertionSort} from './helpers';
+
 export const buildIdeal = (val) => {
   let data = {}
   switch(val){
@@ -51,22 +53,41 @@ export const neededTransactions = (risk, folio) => {
 }
 
 export const minimumTrans = (ideal,input,total) => {
-  let index=['stocks','bonds','mutual', 'etf', 'estate']
-  let folio=input;
-  let actions=[]
-  for(let i=0; i<ideal.length-1; i++){
-    let delta=ideal[i]-folio[i];
-    for(let j=i+1;j<ideal.length;j++){
-      let item={}
-      if(delta<=folio[j]){
-        item['to']=index[i];
-        item['from']=index[j];
-        item['amount']=Math.round((delta/100)*total);
-        actions.push(item);
-        folio[i]+=delta;
-        folio[j]-=delta;
-        break;
+  let index = ['stocks','bonds','mutual', 'etf', 'estate'];
+  let delta = input.map(function(item, index) {
+    return Math.round(item - ideal[index]);
+  });
+  let sortedDelta = insertionSort(delta, index);
+  let transactions = actionCreator(sortedDelta.a, sortedDelta.b, total);
+  return transactions;
+}
+
+function actionCreator(delta, index, total){
+  let actions =[]
+  for(let i=0; i<delta.length; i++){
+    let j=delta.length-1;
+    while(delta[i] != 0){
+      let item = {};
+      if((delta[i]+delta[j]) >= delta[i] && delta[j] != 0){
+        if(Math.abs(delta[i]) >= delta[j]){
+          item['to']=index[i];
+          item['from']=index[j];
+          item['amount']=Math.round((delta[j]/100)*total);
+          console.log(item);
+          actions.push(item);
+          delta[i]+=delta[j];
+          delta[j]=0;
+        }else{
+          item['to']=index[i];
+          item['from']=index[j];
+          item['amount']=(Math.round((delta[i]/100)*total)) * -1;
+          console.log(item);
+          actions.push(item);
+          delta[j]+=delta[i]
+          delta[i]=0
+        }
       }
+      j--;
     }
   }
   return actions;

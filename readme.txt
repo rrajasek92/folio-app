@@ -33,12 +33,9 @@ I decided to include a dynamic caption that changes based on which risk level
 has been selected, so the user will have a better idea of what each number really
 means.
 
-For the second component, I decided to break up the questions and form into two
-screen, as I felt that the form looked cleaner on its own. Styling difficulties
-aside, in hindsight it may have been better to add the question to the form page
-in order to avoid confusion. I used a third party component for the form entry
-as well, as there were subtle ux qualities to it that made the app feel more
-professional. The input is type-proofed, so only numbers may be provided.
+I used a third party component for the form entry as well, as there were subtle
+ux qualities to it that made the app feel more professional. The input is
+type-proofed, so only numbers may be provided.
 
 After that we have the Dashboard which uses the user information to generate
 a donut chart for their ideal financial portfolio, and a transaction chart for
