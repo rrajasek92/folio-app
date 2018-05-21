@@ -9,37 +9,12 @@ import {saveRisk} from '../../actions';
 
 @connect(state => ({saveRisk}))
 export default class RiskTolerance extends React.Component {
-  constructor(props){
-    super(props);
-    this.state = {
-      risk: 'I want minimum volatility',
-      riskVal: 1
-    };
-  }
+
   componentWillMount(){
     this.props.dispatch(this.props.saveRisk(1));
   }
 
-  setMessage = (value) => {
-    if(value == 1){
-      this.setState({risk:'I want minimum volatility'});
-    }
-    else if(value == 10){
-      this.setState({risk:'I want maximum volatility'});
-    }
-    else if(value <= 4){
-      this.setState({risk:'I want to avoid volatility'});
-    }
-    else if(value <= 7){
-      this.setState({risk:'I don\'t mind a little volatility'});
-    }
-    else{
-      this.setState({risk:'I want more volatility'});
-    }
-  }
-
   submit = () => {
-    this.props.dispatch(this.props.saveRisk(this.state.riskVal));
     this.props.navigation.navigate('PortfolioIntro');
   }
 

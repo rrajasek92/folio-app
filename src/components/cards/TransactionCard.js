@@ -1,30 +1,23 @@
 import React from 'react';
 import {StyleSheet, Text, TouchableOpacity} from 'react-native';
+import { Icon } from 'react-native-elements'
 
 export default class TransactionCard extends React.Component {
   constructor(props){
     super(props);
     this.state = {
-      fontColor:'black',
       to: '',
       from:''
     }
   }
 
   componentWillMount() {
-    let color = this.getColor(this.props.amount);
     let to_switch = this.typeSwitch(this.props.to);
     let from_switch = this.typeSwitch(this.props.from);
     this.setState({
-      fontColor:color,
       to: to_switch,
       from: from_switch
     });
-  }
-
-  getColor = (delta) => {
-    if(delta<0) return '#ef7c7c';
-    if(delta>0) return '#62c16d';
   }
 
   typeSwitch = (code) => {
@@ -54,9 +47,19 @@ export default class TransactionCard extends React.Component {
   render() {
     return (
       <TouchableOpacity activeOpacity = {0.7} style={styles.container}>
-        <Text style={{fontSize:15}}>{this.state.from}    -> </Text>
-        <Text style={{color: this.state.fontColor, fontSize:20}}>${this.props.amount}</Text>
-        <Text style={{fontSize:15}}> ->    {this.state.to}</Text>
+        <Text style={{fontSize:10}}>{this.state.from}</Text>
+        <Icon
+          name='arrow-bold-right'
+          type='entypo'
+          color='#ef7c7c'
+        />
+        <Text style={{color: '#62c16d', fontSize:20}}>${this.props.amount}</Text>
+        <Icon
+          name='arrow-bold-right'
+          type='entypo'
+          color='#62c16d'
+        />
+        <Text style={{fontSize:10}}>{this.state.to}</Text>
       </TouchableOpacity>
     );
   }
