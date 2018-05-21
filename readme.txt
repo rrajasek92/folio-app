@@ -28,10 +28,8 @@ but it is entirely possible that it may look barebones and unfinished to some.
 For the first component, the risk tolerance level, I decided to use a prebuilt
 component that has an animated aspect to it for choosing a risk level (1 to 10).
 I've styled it so that the color of the selection gets more intense as the number
-of the selection gets more intense (1 is duller, 10 is brighter). Additionally
-I decided to include a dynamic caption that changes based on which risk level
-has been selected, so the user will have a better idea of what each number really
-means.
+of the selection gets more intense (1 is duller, 10 is brighter). The donut charts
+animates to the respective model proportions based on the risk level selected.
 
 I used a third party component for the form entry as well, as there were subtle
 ux qualities to it that made the app feel more professional. The input is
@@ -42,11 +40,10 @@ a donut chart for their ideal financial portfolio, and a transaction chart for
 the necessary transactions necessary to match their ideal portfolio. Ideally,
 I would like to have had a tooltip pop up when a slice of the donut chart is pressed
 displaying additional information including the percentage of each slice, but as
-this would have been a time intensive endeavor, I proceeded with other tasks before
-attempting to implement this. Unfortunately I was not able to get to this in
-trying to meet my time goal. Another goal for this pie chart was to be able to
-click the donut hole of the chart and have a popup that would allow you to change
-your ideal profile.
+there are very few available charting libraries/options in Native as of right now,
+I was unable to get stable functionality for this.
+Another goal for this pie chart was to be able to click the donut hole of the
+chart and have a popup that would allow you to change your ideal profile.
 I would also have liked to display a more robust transaction table with the user
 being able to click on each investment type and change their current portfolio,
 but again time did not permit.
@@ -77,10 +74,13 @@ Code Breakdown:
 My overall approach was to of course make the project as modular and clean as
 possible. I utilized redux to store both user inputs (risk tolerance level and
 current portfolio). My backend recommendation engine in /src/functions/recommendationEngine.js
-used this user data to create a standard data distribution for their ideal model and subtracted the calculated
-percentages of their current portfolio to create a suggested transaction model.
-These can be found in /src/functions as both part of the recommendation engine and
-as helper functions.
+used this user data to create a standard data distribution for their ideal model.
+From there the transaction logic takes the user portfolio and calculates the minimum
+necessary transactions to match their ideal portfolio. The Transaction list component
+displays the resulting JSON as Transaction Cards showing the suggested money transfers
+between investments.
+These functions can be found in /src/functions as both part of the recommendation 
+engine and as helper functions.
 I used react-navigation as my router, with configuration in the /src/navigation/config
 directory. App.js (the root component) renders a RootStack component, which is a
 StackNavigator component (from react-navigation) that utilizes my router configuration.
