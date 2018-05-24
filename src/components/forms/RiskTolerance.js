@@ -11,6 +11,7 @@ import {saveRisk} from '../../actions';
 export default class RiskTolerance extends React.Component {
 
   componentWillMount(){
+    //Initialize Donut Data in redux
     this.props.dispatch(this.props.saveRisk(1));
   }
 
@@ -27,7 +28,7 @@ export default class RiskTolerance extends React.Component {
           initial={0}
           fontSize={23}
           borderColor={'white'}
-          hasPadding={false}
+          hasPadding={true}
           onPress={value => {this.props.dispatch(this.props.saveRisk(value))}}
         />
         <DonutChart />

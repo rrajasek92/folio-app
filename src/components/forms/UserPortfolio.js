@@ -30,6 +30,7 @@ export default class UserPortfolio extends React.Component {
 
   submit = () => {
     console.log(this.state.folio)
+    //Type proof, will check to see if entries are number values and not strings/letters etc.
     let check = this.state.folio;
     for(i in check){
       let int = parseInt(check[i])||'null'

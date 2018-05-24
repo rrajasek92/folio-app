@@ -55,7 +55,7 @@ export const neededTransactions = (risk, folio) => {
 export const minimumTrans = (ideal,input,total) => {
   let index = ['stocks','bonds','mutual', 'etf', 'estate'];
   let delta = input.map(function(item, index) {
-    return Math.round(item - ideal[index]);
+    return parseFloat((item - ideal[index]).toFixed(4));
   });
   let sortedDelta = insertionSort(delta, index);
   let transactions = actionCreator(sortedDelta.a, sortedDelta.b, total);
@@ -68,11 +68,12 @@ function actionCreator(delta, index, total){
     let j=delta.length-1;
     while(delta[i] != 0){
       let item = {};
-      if((delta[i]+delta[j]) >= delta[i] && delta[j] != 0){
+      if((delta[i]+delta[j]) >= delta[i] && delta[j] != 0 && index[i]!=index[j]){
         if(Math.abs(delta[i]) >= delta[j]){
           item['to']=index[i];
           item['from']=index[j];
-          item['amount']=Math.round((delta[j]/100)*total);
+          // item['amount']=parseFloat(((delta[j]/100)*total).toFixed(4));
+          item['amount']=Math.round(parseFloat(((delta[j]/100)*total).toFixed(4)))
           console.log(item);
           actions.push(item);
           delta[i]+=delta[j];
@@ -80,7 +81,7 @@ function actionCreator(delta, index, total){
         }else{
           item['to']=index[i];
           item['from']=index[j];
-          item['amount']=(Math.round((delta[i]/100)*total)) * -1;
+          item['amount']=Math.round(parseFloat(((delta[i]/100)*total).toFixed(4))) * -1;
           console.log(item);
           actions.push(item);
           delta[j]+=delta[i]
