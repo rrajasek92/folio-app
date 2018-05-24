@@ -35,8 +35,8 @@ I used a third party component for the form entry as well, as there were subtle
 ux qualities to it that made the app feel more professional. The input is
 type-proofed, so only numbers may be provided.
 
-After that we have the Dashboard which uses the user information to generate
-a donut chart for their ideal financial portfolio, and a transaction chart for
+After that we have the Dashboard which uses the user information to once again
+display the donut chart for their ideal financial portfolio, and a transaction chart for
 the necessary transactions necessary to match their ideal portfolio. Ideally,
 I would like to have had a tooltip pop up when a slice of the donut chart is pressed
 displaying additional information including the percentage of each slice, but as
@@ -74,7 +74,7 @@ Code Breakdown:
 My overall approach was to of course make the project as modular and clean as
 possible. I utilized redux to store both user inputs (risk tolerance level and
 current portfolio). My backend recommendation engine in /src/functions/recommendationEngine.js
-used this user data to create a standard data distribution for their ideal model.
+used this user data to create a pre-built data distribution for their ideal model.
 From there the transaction logic takes the user portfolio and calculates the minimum
 necessary transactions to match their ideal portfolio. The Transaction list component
 displays the resulting JSON as Transaction Cards showing the suggested money transfers

@@ -12,6 +12,7 @@ export default class TransactionCard extends React.Component {
   }
 
   componentWillMount() {
+    //saves properly formatted string based on investment code
     let to_switch = this.typeSwitch(this.props.to);
     let from_switch = this.typeSwitch(this.props.from);
     this.setState({
@@ -21,6 +22,7 @@ export default class TransactionCard extends React.Component {
   }
 
   typeSwitch = (code) => {
+    //returns formatted string based on investment code
     let type = ''
     switch(code){
       case 'stocks':

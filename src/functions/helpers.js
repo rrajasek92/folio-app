@@ -1,6 +1,7 @@
 import { NavigationActions } from 'react-navigation';
 
 export const calculatePercentages = (folio) => {
+  //generate percentage object based on user portfolio
   let total = 0;
   let output = {};
   for(i in folio){
@@ -14,6 +15,7 @@ export const calculatePercentages = (folio) => {
 
 
 export const folioArray = (obj) => {
+  //converts portfolio object into array
   let output = [];
   for(i in obj){
     output.push(obj[i]);
@@ -22,6 +24,7 @@ export const folioArray = (obj) => {
 }
 
 export const total = (folio) => {
+  //finds the investment total for the user
   let total = 0;
   for(i in folio){
     let val = parseFloat(parseFloat(folio[i]).toFixed(4));
@@ -49,6 +52,7 @@ export const insertionSort = (items, index) => {
 }
 
 export const cleanNavigate = (navigation, route) => {
+  //Excluded due to numerous bugs
   const resetAction = NavigationActions.reset({
     index: 0,
     actions: [

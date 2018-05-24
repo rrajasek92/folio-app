@@ -11,7 +11,9 @@ export default class UserPortfolio extends React.Component {
   constructor(props){
     super(props);
     this.state = {
+      //initialize user portfolio object
       folio: {stocks: '', bonds: '', mutual: '', etf: '', estate: ''},
+      //datasource for user entry list
       investments: [
         {type:'Stocks', key:'stocks'},
         {type:'Bonds', key:'bonds'},
@@ -23,27 +25,36 @@ export default class UserPortfolio extends React.Component {
   }
 
   handleInput = (type, value) =>{
+    //updates local portfolio object with each user keystroke
     let temp = this.state.folio;
     temp[type] = value;
     this.setState({folio: temp});
   }
 
-  submit = () => {
-    console.log(this.state.folio)
+  dataCheck = (folio) =>{
     //Type proof, will check to see if entries are number values and not strings/letters etc.
-    let check = this.state.folio;
-    for(i in check){
-      let int = parseInt(check[i])||'null'
+    for(i in folio){
+      let int = parseInt(folio[i])||'null'
       if(int=='null'){
         alert('Please enter valid dollar values for each investment type');
-        return;
+        return false;
       }
     }
+    return true;
+  }
+
+  submit = () => {
+    console.log('SUBMITTING FORM')
+    let check = this.dataCheck(this.state.folio);
+    if(check){
+    //save user portfolio in redux
     this.props.dispatch(this.props.savePortfolio(this.state.folio));
     this.props.navigation.navigate('Dashboard');
+    }
   }
 
   _renderItem = (item) => {
+    //render individual form entries
     return (
       <View>
         <FormLabel>{item.type}</FormLabel>

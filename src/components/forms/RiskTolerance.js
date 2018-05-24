@@ -11,7 +11,7 @@ import {saveRisk} from '../../actions';
 export default class RiskTolerance extends React.Component {
 
   componentWillMount(){
-    //Initialize Donut Data in redux
+    //Initialize risk value in redux; The default selection is '1'
     this.props.dispatch(this.props.saveRisk(1));
   }
 

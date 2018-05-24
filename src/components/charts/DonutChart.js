@@ -8,30 +8,6 @@ var width = screenDimensions.width;
 
 @connect(state =>({donut_data: state.donut_reducer.donut_data}))
 export default class DonutChart extends React.Component {
-  constructor(props){
-    super(props);
-    this.state = {
-      data: [
-        { x: 'stocks', y: 100, label: "Stocks" },
-        { x: 'bonds', y: 0, label: "Bonds" },
-        { x: 'mutual', y: 0, label: "Mutual Funds" },
-        { x: 'etf', y: 0, label: "ETF" },
-        { x: 'estate', y: 0, label: "Real Estate" }
-
-      ],
-      newData: []
-    }
-  }
-
-  componentWillMount(){
-  }
-
-  componentDidMount(){
-  }
-
-  componentDidUpdate(){
-
-  }
 
   render() {
 

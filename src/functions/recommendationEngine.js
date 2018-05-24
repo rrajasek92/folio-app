@@ -1,6 +1,7 @@
 import {insertionSort} from './helpers';
 
 export const buildIdeal = (val) => {
+  //takes in user provided risk value and returns a suggested portfolio model
   let data = {}
   switch(val){
     case 1:
@@ -39,40 +40,34 @@ export const buildIdeal = (val) => {
   return data;
 }
 
-
-export const neededTransactions = (risk, folio) => {
-  let trans = [];
-  for(key in folio){
-    let obj = {}
-    obj['key'] = key
-    obj['value'] = risk[key] - folio[key]
-    console.log(obj)
-    trans.push(obj);
-  }
-  return trans;
-}
-
 export const minimumTrans = (ideal,input,total) => {
+  //creates a JSON of transactions for use as datasource in transaction list component
+  //index array has investment code at respective index within array
   let index = ['stocks','bonds','mutual', 'etf', 'estate'];
+  //delta is a difference array between the input and ideal models
   let delta = input.map(function(item, index) {
     return parseFloat((item - ideal[index]).toFixed(4));
   });
+  //use insertion sort to have lowest to highest differences
   let sortedDelta = insertionSort(delta, index);
   let transactions = actionCreator(sortedDelta.a, sortedDelta.b, total);
   return transactions;
 }
 
 function actionCreator(delta, index, total){
+  //creates transaction JSON
   let actions =[]
   for(let i=0; i<delta.length; i++){
     let j=delta.length-1;
     while(delta[i] != 0){
       let item = {};
+      //make sure you are taking money from investment valued both greater than
+      //the destination investment and is not itself at a negative difference with
+      //the ideal model. If 0, leave alone. If comparing with self, ignore
       if((delta[i]+delta[j]) >= delta[i] && delta[j] != 0 && index[i]!=index[j]){
         if(Math.abs(delta[i]) >= delta[j]){
           item['to']=index[i];
           item['from']=index[j];
-          // item['amount']=parseFloat(((delta[j]/100)*total).toFixed(4));
           item['amount']=Math.round(parseFloat(((delta[j]/100)*total).toFixed(4)))
           console.log(item);
           actions.push(item);

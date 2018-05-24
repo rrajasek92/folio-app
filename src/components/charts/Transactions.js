@@ -15,15 +15,13 @@ export default class Transactions extends React.Component {
   }
 
   componentWillMount(){
+    //builds out percentage arrays for ideal and user portfolios as inputs for
+    //generating transaction JSON
     let idealArr = folioArray(this.props.ideal_folio);
     let percentages = calculatePercentages(this.props.user_portfolio);
-    console.log('Percentages:');
-    console.log(percentages);
     let userArr = folioArray(percentages);
     let totalInv = total(this.props.user_portfolio);
-    console.log(totalInv);
     let trans = minimumTrans(idealArr, userArr, totalInv);
-    console.log(trans);
     this.setState({transactions:trans});
   }
 
@@ -38,6 +36,7 @@ export default class Transactions extends React.Component {
   }
 
   render() {
+    //constructed transaction JSON used as datasource for transaction list 
     return (
       <FlatList
         data={this.state.transactions}
